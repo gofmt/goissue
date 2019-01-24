@@ -45,10 +45,10 @@ func main() {
 		logrus.WithError(err).Panicln("连接数据库错误")
 	}
 
-	srv := http.Server{Addr: config.C.Addr, Handler: chi.ServerBaseContext(ctx, api.Router())}
+	srv := http.Server{Addr: config.C.APIAddr, Handler: chi.ServerBaseContext(ctx, api.Router())}
 
 	go func() {
-		logrus.Println("API 服务监听地址: ", config.C.Addr)
+		logrus.Println("API 服务监听地址: ", config.C.APIAddr)
 		if err := srv.ListenAndServe(); err != nil {
 			logrus.WithError(err).Panicln("API 服务监听错误")
 		}

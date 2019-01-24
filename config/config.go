@@ -10,13 +10,13 @@ import (
 )
 
 var C = struct {
-	Debug  bool
-	Addr   string
-	DBAddr string
+	Debug   bool
+	APIAddr string
+	DBAddr  string
 }{
-	Debug:  true,
-	Addr:   ":6868",
-	DBAddr: "postgres://postgres:12345678@localhost:5432/goissue?sslmode=disable",
+	Debug:   true,
+	APIAddr: ":6868",
+	DBAddr:  "postgres://postgres:12345678@localhost:5432/goissue?sslmode=disable",
 }
 
 func Load(cfgPath string) error {
