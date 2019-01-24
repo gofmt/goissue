@@ -1,0 +1,3 @@
+debug: true
+addr: :6868
+dbaddr: postgres://postgres:12345678@localhost:5432/goissue?sslmode=disable
