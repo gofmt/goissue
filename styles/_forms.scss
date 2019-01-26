@@ -37,7 +37,7 @@ legend {
   appearance: none;
   background: $bg-color-light;
   background-image: none;
-  border: $border-width solid $border-color-dark;
+  border: $border-width solid $border-color;
   border-radius: $border-radius;
   color: $body-font-color;
   display: block;
@@ -122,7 +122,7 @@ textarea.form-input {
   padding: $control-padding-y $control-padding-x;
   vertical-align: middle;
   width: 100%;
-  background: $bg-color-light; 
+  background: $bg-color-light;
   &:focus {
     @include control-shadow();
     border-color: $primary-color;

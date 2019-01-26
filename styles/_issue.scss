@@ -1,9 +1,38 @@
 .issue-list {
-  padding: 10px;
+  //padding: 0 10px;
   background: #ffffff;
   border: 1px solid rgb(237, 239, 241);
 
   .issue-content {
-
+    .issue-item {
+      &:not(:last-child) {
+        border-bottom: 1px solid $border-color;
+      }
+      margin: 0;
+      //height: 60px;
+      //max-height: 120px;
+      .issue-item-left {
+        background: #fafafa;
+        border-right: 1px solid $border-color;
+        font-size: 14px;
+      }
+      .issue-item-right {
+        font-size: 12px;
+        color: #7c757a;
+        a {
+          font-size: 12px;
+        }
+      }
+      .issue-item-content {
+        padding: 5px;
+        .issue-item-title {
+          font-size: 18px;
+        }
+        .issue-item-info {
+          color: #c2c2c2;
+          font-size: 12px;
+        }
+      }
+    }
   }
 }
