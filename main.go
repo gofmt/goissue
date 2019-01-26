@@ -2,17 +2,19 @@ package main
 
 import (
 	"context"
-	"net/http"
+	"goissue/api"
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
-	"goissue/api"
+	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
+
 	"goissue/config"
 	"goissue/models"
 	"goissue/pkgs/logger"
 
-	"github.com/go-chi/chi"
 	"github.com/sirupsen/logrus"
 )
 
@@ -45,21 +47,38 @@ func main() {
 		logrus.WithError(err).Panicln("连接数据库错误")
 	}
 
-	srv := http.Server{Addr: config.C.APIAddr, Handler: chi.ServerBaseContext(ctx, api.Router())}
+	e := echo.New()
+	e.HideBanner = true
+	e.Debug = true
+	e.Renderer = &api.Template{}
+
+	e.Use(middleware.RequestID())
+	e.Use(middleware.Logger())
+	e.Use(middleware.Recover())
+	e.Use(middleware.Gzip())
+	// e.Use(middleware.HTTPSRedirect())
+	e.Use(middleware.BodyLimit("4M"))
+	e.Use(middleware.CSRF())
+
+	e.Static("/static", "static")
+
+	api.InitRouter(e.Group("/"))
 
 	go func() {
-		logrus.Println("API 服务监听地址: ", config.C.APIAddr)
-		if err := srv.ListenAndServe(); err != nil {
+		if err := e.Start(config.C.APIAddr); err != nil {
 			logrus.WithError(err).Panicln("API 服务监听错误")
 		}
 	}()
 
 	quit := make(chan os.Signal, 1)
-	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM, syscall.SIGKILL, syscall.SIGHUP)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT, syscall.SIGHUP)
 	c := <-quit
 	logrus.Debugln("程序信号: ", c)
 
-	_ = srv.Shutdown(ctx)
+	timeoutCtx, timeoutCancel := context.WithTimeout(ctx, 10*time.Second)
+	defer timeoutCancel()
+
+	_ = e.Shutdown(timeoutCtx)
 	cancel()
 
 	logrus.Println("程序正常退出.")

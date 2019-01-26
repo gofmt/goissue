@@ -1,0 +1,14 @@
+.box {
+  background: #ffffff;
+  border-radius: 5px;
+  border: 1px solid $border-color;
+  font-size: 13px;
+
+  .box-header {
+    padding: 6px;
+  }
+
+  .box-body {
+    padding: 6px;
+  }
+}
