@@ -2,9 +2,11 @@ package oauth2
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"time"
 )
 
 type Gitlab struct {
@@ -12,6 +14,14 @@ type Gitlab struct {
 	secret      string
 	redirectURI string
 	baseURL     string
+}
+
+func (oauth *Gitlab) BaseURL() string {
+	return oauth.baseURL
+}
+
+func (oauth *Gitlab) SetBaseURL(baseURL string) {
+	oauth.baseURL = baseURL
 }
 
 func (oauth *Gitlab) RedirectURI() string {
@@ -75,7 +85,44 @@ func (oauth *Gitlab) AccessToken(code string) (token *GitlabAccessToken, err err
 	return
 }
 
-func (oauth *Gitlab) User(token *GitlabAccessToken) (user, err error) {
+type GitlabUser struct {
+	ID                int       `json:"id"`
+	Login             string    `json:"login"`
+	Name              string    `json:"name"`
+	AvatarURL         string    `json:"avatar_url"`
+	URL               string    `json:"url"`
+	HTMLURL           string    `json:"html_url"`
+	FollowersURL      string    `json:"followers_url"`
+	FollowingURL      string    `json:"following_url"`
+	GistsURL          string    `json:"gists_url"`
+	StarredURL        string    `json:"starred_url"`
+	SubscriptionsURL  string    `json:"subscriptions_url"`
+	OrganizationsURL  string    `json:"organizations_url"`
+	ReposURL          string    `json:"repos_url"`
+	EventsURL         string    `json:"events_url"`
+	ReceivedEventsURL string    `json:"received_events_url"`
+	Type              string    `json:"type"`
+	SiteAdmin         bool      `json:"site_admin"`
+	PublicRepos       int       `json:"public_repos"`
+	PublicGists       int       `json:"public_gists"`
+	Followers         int       `json:"followers"`
+	Following         int       `json:"following"`
+	Stared            int       `json:"stared"`
+	Watched           int       `json:"watched"`
+	CreatedAt         time.Time `json:"created_at"`
+	UpdatedAt         time.Time `json:"updated_at"`
+	Email             string    `json:"email"`
+	PrivateToken      string    `json:"private_token"`
+	TotalRepos        int       `json:"total_repos"`
+	OwnedRepos        int       `json:"owned_repos"`
+	TotalPrivateRepos int       `json:"total_private_repos"`
+	OwnedPrivateRepos int       `json:"owned_private_repos"`
+	PrivateGists      int       `json:"private_gists"`
+
+	Message string `json:"message"`
+}
+
+func (oauth *Gitlab) User(token *GitlabAccessToken) (user *GitlabUser, err error) {
 	resp, err := http.Get(oauth.baseURL + "/api/v4/user?access_token=" + token.AccessToken)
 	if err != nil {
 		return
@@ -87,10 +134,14 @@ func (oauth *Gitlab) User(token *GitlabAccessToken) (user, err error) {
 		return
 	}
 
-	// TODO 返回值
-
+	user = new(GitlabUser)
 	err = json.Unmarshal(body, user)
 	if err != nil {
+		return
+	}
+
+	if user.Message != "" {
+		err = fmt.Errorf(user.Message)
 		return
 	}
 
