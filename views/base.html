@@ -9,9 +9,9 @@
     <meta name="keywords" content="Go,Golang,编程,开发,研发,问答,技术问答,付费问答,编程技术,编程知识库,知识问答">
     <meta name="generator" content="Go1.11.5">
     <meta name="robots" content="index,follow">
-    <title>编程技术问答社区</title>
+    <title>{Issues}</title>
     {{/*<link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css">*/}}
-    <link rel="stylesheet" href="//cdn.bootcss.com/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link href="//cdn.bootcss.com/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/bootstrap.css">
     <link rel="stylesheet" href="/static/css/app.css">
     {{ template "css" . }}
@@ -31,10 +31,10 @@
 
         <ul class="navbar-nav mt-2 mt-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="/login"><span class="oi oi-key"></span> 登入</a>
+            <a class="nav-link" href="/login"><span class="oi oi-account-login"></span>&nbsp;登入</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/register"><span class="oi oi-people"></span> 注册</a>
+            <a class="nav-link" href="/register"><span class="oi oi-people"></span>&nbsp;注册</a>
           </li>
           {{/*登录后展示*/}}
           {{/*<li class="nav-item">*/}}
@@ -66,6 +66,9 @@
   <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
   <script src="//cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
   <script src="/static/js/app.js"></script>
+  <script>
+    feather.replace();
+  </script>
   {{ template "js" . }}
   </body>
   </html>

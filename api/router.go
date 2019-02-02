@@ -16,4 +16,8 @@ func InitRouter(e *echo.Echo) {
 	e.GET("/register", func(c echo.Context) error {
 		return c.Render(200, "register", nil)
 	})
+
+	e.GET("/publish", func(c echo.Context) error {
+		return c.Render(200, "publish", nil)
+	})
 }

@@ -1,0 +1,26 @@
+{{ define "content" }}
+  <div class="card">
+    <div class="card-header card-title">
+      <span>发布问题前请先阅读提问的智慧和网站条款</span>
+    </div>
+    <div class="card-body">
+      <form method="post" action="/publish">
+        <div class="form-group">
+          <label for="categray">选择分类:</label>
+          <select class="form-control" name="categray" id="categray">
+            <option value="1">1</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="desc">问题详细描述:</label>
+          <textarea name="desc" id="desc" cols="30" rows="10" class="form-control"
+                    placeholder="第一行文字将作为标题展示."></textarea>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <button type="reset" class="btn btn-light">重 置</button>
+          <button type="submit" class="btn btn-info">发 布</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{{ end }}
