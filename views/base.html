@@ -1,65 +1,72 @@
 {{ define "base" }}
-    <!DOCTYPE html>
-    <html lang="zh-Hans">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-        <meta name="author" content="GoIssues<admin@goissues.net>">
-        <meta name="description" content="基于Go开发的技术|知识问答系统">
-        <meta name="keywords" content="Go,Golang,编程,开发,研发,问答,技术问答,付费问答,编程技术,编程知识库,知识问答">
-        <meta name="generator" content="Go1.11.5">
-        <meta name="robots" content="index,follow">
-        <title>技术问答</title>
-        <link rel="stylesheet" href="/static/css/app.css">
-        {{ template "css" . }}
-    </head>
-    <body>
-    <header class="navbar">
-        <section class="navbar-section">
-            <a href="/issues" class="btn btn-link">问答</a>
-            <a href="/topics" class="btn btn-link">分享</a>
-        </section>
-        <section class="navbar-center hide-sm">
-            <a href="/" class="navbar-brand mr-2">GoIssue</a>
-        </section>
-        <section class="navbar-section">
-            <a href="/login" class="btn btn-link">登录</a>
-            <a href="/register" class="btn btn-link">注册</a>
-            <a href="/message" class="btn btn-link avatar badge" title="消息">
-                <i class="icon icon-mail"></i>
-            </a>
-            <div class="divider-vert"></div>
-            <div class="dropdown dropdown-right">
-                <div class="btn-group">
-                    <a href="#" class="btn btn-link dropdown-toggle" tabindex="0">
-                        <i class="icon icon-people"></i>
-                    </a>
-                    <ul class="menu">
-                        <li class="menu-item">
-                            <label class="form-switch">
-                                <input type="checkbox"><i class="form-icon"></i> 窄屏视图
-                            </label>
-                        </li>
-                        <li class="menu-item">
-                            <label class="form-switch">
-                                <input type="checkbox"><i class="form-icon"></i> 宽屏视图
-                            </label>
-                        </li>
-                        <li class="menu-item">
-                            <label class="form-switch">
-                                <input type="checkbox"><i class="form-icon"></i> 开启暗黑模式
-                            </label>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </header>
-    <div class="container grid-xl">
-        {{ template "content" . }}
+  <!DOCTYPE html>
+  <html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="author" content="GoIssues<admin@goissues.net>">
+    <meta name="description" content="基于Go开发的技术|知识问答系统">
+    <meta name="keywords" content="Go,Golang,编程,开发,研发,问答,技术问答,付费问答,编程技术,编程知识库,知识问答">
+    <meta name="generator" content="Go1.11.5">
+    <meta name="robots" content="index,follow">
+    <title>编程技术问答社区</title>
+    {{/*<link rel="stylesheet" href="https://cdn.bootcss.com/twitter-bootstrap/4.2.1/css/bootstrap.min.css">*/}}
+    <link rel="stylesheet" href="//cdn.bootcss.com/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+    {{ template "css" . }}
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top border-bottom" style="background-color: #e3f2fd;">
+    <div class="container">
+      <a href="/" class="navbar-brand">{Issues}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <form class="form-inline mr-auto">
+          <input class="form-control" type="search" placeholder="搜索问题..." aria-label="搜索问题"
+                 style="width:350px;border-radius: 50px">
+        </form>
+
+        <ul class="navbar-nav mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/login"><span class="oi oi-key"></span> 登入</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register"><span class="oi oi-people"></span> 注册</a>
+          </li>
+          {{/*登录后展示*/}}
+          {{/*<li class="nav-item">*/}}
+            {{/*<button class="nav-link btn">*/}}
+              {{/*<span class="oi oi-envelope-open"></span>*/}}
+            {{/*</button>*/}}
+          {{/*</li>*/}}
+          {{/*<li class="nav-item dropdown">*/}}
+            {{/*<a href="#" class="nav-link dropdown-toggle" role="button" id="navbarDropdown" data-toggle="dropdown"*/}}
+               {{/*aria-haspopup="true"*/}}
+               {{/*aria-expanded="false">*/}}
+              {{/*<span class="oi oi-person"></span>*/}}
+            {{/*</a>*/}}
+            {{/*<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">*/}}
+              {{/*<a href="#" class="dropdown-item">设置</a>*/}}
+              {{/*<div class="dropdown-divider"></div>*/}}
+              {{/*<a href="#" class="dropdown-item">退出</a>*/}}
+            {{/*</div>*/}}
+          {{/*</li>*/}}
+        </ul>
+      </div>
     </div>
-    <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    {{ template "js" . }}
-    </body>
-    </html>
+  </nav>
+
+  <div class="container">
+    {{ template "content" . }}
+  </div>
+
+  <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script src="/static/js/app.js"></script>
+  {{ template "js" . }}
+  </body>
+  </html>
 {{ end }}

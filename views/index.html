@@ -1,0 +1,71 @@
+{{ define "content" }}
+  <div class="btn-toolbar justify-content-between" style="padding-bottom: 10px;border-bottom: 1px dotted #ddd">
+    <div class="btn-group btn-group-sm">
+      <button type="button" class="btn btn-outline-info active">最新</button>
+      <button type="button" class="btn btn-outline-info">最热</button>
+      <button type="button" class="btn btn-outline-info">抢答</button>
+    </div>
+    <div class="btn-group btn-group-sm">
+      <button type="button" class="btn btn-success"><span class="oi oi-pencil"></span> 提问</button>
+    </div>
+  </div>
+  <ul class="list-unstyled issues-list">
+    <li class="media">
+      <img src="/static/images/0.jpg" class="align-self-center mr-3">
+      <div class="media-body">
+        <div class="issue-title">
+          <a href="#">就想问问,Go到底哪里好?</a>
+          <span class="badge badge-pill badge-primary">置顶</span>
+        </div>
+        <div class="issue-info">
+          <a href="#"><span class="oi oi-person"></span> 果子</a>&nbsp;|&nbsp;
+          <a href="#"><span class="oi oi-eye"></span> 123</a>&nbsp;|&nbsp;
+          <a href="#"><span class="oi oi-thumb-up"></span> 19</a>&nbsp;|&nbsp;
+          <a href="#"><span class="oi oi-dollar"></span> 200</a>&nbsp;|&nbsp;
+          <span class="oi oi-clock"></span> 1小时前
+        </div>
+      </div>
+    </li>
+
+    <li class="media">
+      <img src="/static/images/1.jpg" class="align-self-center mr-3">
+      <div class="media-body">
+        <div class="issue-title">
+          <a href="#">就想问问,Go怎么搭建舒服的开发环境?</a>
+          <span class="badge badge-pill badge-danger">热议</span>
+        </div>
+        <div class="issue-info">
+          <a href="#"><span class="oi oi-person"></span> 果子</a>&nbsp;|&nbsp;
+          <a href="#"><span class="oi oi-eye"></span> 123</a>&nbsp;|&nbsp;
+          <a href="#"><span class="oi oi-thumb-up"></span> 19</a>&nbsp;|&nbsp;
+          <a href="#"><span class="oi oi-dollar"></span> 200</a>&nbsp;|&nbsp;
+          <span class="oi oi-clock"></span> 1小时前
+        </div>
+      </div>
+    </li>
+
+    <li class="media">
+      <img src="/static/images/2.jpg" class="align-self-center mr-3">
+      <div class="media-body">
+        <div class="issue-title">
+          <a href="#">需要熟悉Go内存布局吗?</a>
+          {{/*<span class="badge badge-pill badge-dark">悬而未决</span>*/}}
+        </div>
+        <div class="issue-info">
+          <a href="#"><span class="oi oi-person"></span> 果子</a>&nbsp;|&nbsp;
+          <a href="#"><span class="oi oi-eye"></span> 123</a>&nbsp;|&nbsp;
+          <a href="#"><span class="oi oi-thumb-up"></span> 19</a>&nbsp;|&nbsp;
+          <a href="#"><span class="oi oi-dollar"></span> 200</a>&nbsp;|&nbsp;
+          <span class="oi oi-clock"></span> 1小时前
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="loading">
+    正在加载下一页...
+  </div>
+{{ end }}
+
+{{ define "js" }}
+
+{{ end }}

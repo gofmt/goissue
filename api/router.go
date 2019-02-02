@@ -4,8 +4,16 @@ import (
 	"github.com/labstack/echo"
 )
 
-func InitRouter(g *echo.Group) {
-	g.GET("", func(c echo.Context) error {
-		return c.Render(200, "home", nil)
+func InitRouter(e *echo.Echo) {
+	e.GET("/", func(c echo.Context) error {
+		return c.Render(200, "index", nil)
+	})
+
+	e.GET("/login", func(c echo.Context) error {
+		return c.Render(200, "login", nil)
+	})
+
+	e.GET("/register", func(c echo.Context) error {
+		return c.Render(200, "register", nil)
 	})
 }

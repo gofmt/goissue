@@ -1,0 +1,38 @@
+{{ define "content"}}
+  <div class="d-flex justify-content-center align-items-center" style="margin-top: 30px">
+    <form action="/login" method="post" style="width: 300px">
+      <div class="mb-3" style="font-size: 18px;font-weight: bold;text-align: center">
+        注册账号
+      </div>
+      <div class="input-group mb-3">
+        <input type="email" class="form-control" placeholder="输入邮箱账号">
+      </div>
+      <div class="input-group mb-3">
+        <input type="password" class="form-control" placeholder="输入密码">
+      </div>
+      <div class="input-group mb-3">
+        <input type="password" class="form-control" placeholder="输入确认密码">
+      </div>
+      <div class="input-group mb-3">
+        <div class="l-captcha" data-site-key="08f6aa6d0e135a5ccb0d9abee9a0d1c7"></div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <button type="submit" class="btn btn-info">注 册</button>
+        <a href="/login" class="btn btn-light">登入账号</a>
+      </div>
+      <div class="mt-lg-3" style="text-align: center">
+        <h6>第三方账号注册</h6>
+        <div class="btn-group-vertical" style="width: 100%">
+          <a href="#" class="btn btn-light">Github</a>
+          <a href="#" class="btn btn-light">Bitbucket</a>
+          <a href="#" class="btn btn-light">Gitlab</a>
+          <a href="#" class="btn btn-light">Coding</a>
+          <a href="#" class="btn btn-light">OSChina</a>
+        </div>
+      </div>
+    </form>
+  </div>
+{{ end }}
+{{ define "js" }}
+  <script src="//captcha.luosimao.com/static/dist/api.js"></script>
+{{ end }}

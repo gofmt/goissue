@@ -7,6 +7,7 @@ require (
 	github.com/onsi/ginkgo v1.7.0 // indirect
 	github.com/onsi/gomega v1.4.3 // indirect
 	github.com/sirupsen/logrus v1.3.1-0.20190122192820-7d8d63893b99
+	golang.org/x/net v0.0.0-20180906233101-161cd47e91fd
 	gopkg.in/yaml.v2 v2.2.2
 	mellium.im/sasl v0.2.1 // indirect
 )

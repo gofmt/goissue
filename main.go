@@ -62,7 +62,7 @@ func main() {
 
 	e.Static("/static", "static")
 
-	api.InitRouter(e.Group("/"))
+	api.InitRouter(e)
 
 	go func() {
 		if err := e.Start(config.C.APIAddr); err != nil {
