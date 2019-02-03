@@ -60,12 +60,11 @@ type GithubAccessToken struct {
 // AccessToken 请求授权服务器授权
 func (oauth *Github) AccessToken(code string) (token *GithubAccessToken, err error) {
 	params := url.Values{}
-	params.Set("client_id", oauth.id)
-	params.Set("client_secret", oauth.secret)
-	params.Set("code", code)
-	urlAddr := fmt.Sprintf("https://github.com/login/oauth/access_token?%s", params.Encode())
+	params.Add("client_id", oauth.id)
+	params.Add("client_secret", oauth.secret)
+	params.Add("code", code)
 
-	resp, err := http.Post(urlAddr, "", nil)
+	resp, err := http.PostForm("https://github.com/login/oauth/access_token", params)
 	if err != nil {
 		return
 	}
