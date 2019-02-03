@@ -43,12 +43,12 @@ func NewGithubClient(id, secret string) *Github {
 
 // Authorize 请求用户授权
 func (oauth *Github) Authorize(state string) string {
-	parse := url.Values{}
-	parse.Set("client_id", oauth.id)
-	parse.Set("scope", oauth.scope)
-	parse.Set("state", state)
-	parse.Set("redirect_uri", oauth.redirectURI)
-	return fmt.Sprintf("https://github.com/login/oauth/authorize?%s", parse.Encode())
+	params := url.Values{}
+	params.Set("client_id", oauth.id)
+	params.Set("scope", oauth.scope)
+	params.Set("state", state)
+	params.Set("redirect_uri", oauth.redirectURI)
+	return fmt.Sprintf("https://github.com/login/oauth/authorize?%s", params.Encode())
 }
 
 type GithubAccessToken struct {
@@ -59,11 +59,11 @@ type GithubAccessToken struct {
 
 // AccessToken 请求授权服务器授权
 func (oauth *Github) AccessToken(code string) (token *GithubAccessToken, err error) {
-	parse := url.Values{}
-	parse.Set("client_id", oauth.id)
-	parse.Set("client_secret", oauth.secret)
-	parse.Set("code", code)
-	urlAddr := fmt.Sprintf("https://github.com/login/oauth/access_token?%s", parse.Encode())
+	params := url.Values{}
+	params.Set("client_id", oauth.id)
+	params.Set("client_secret", oauth.secret)
+	params.Set("code", code)
+	urlAddr := fmt.Sprintf("https://github.com/login/oauth/access_token?%s", params.Encode())
 
 	resp, err := http.Post(urlAddr, "", nil)
 	if err != nil {
